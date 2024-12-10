@@ -47,7 +47,7 @@ function Header() {
 
 
     const handleProfileClick = () => {
-        isAuthenticated ? history.push("/profile") : history.push("/login")
+        isAuthenticated ? history.push("/profile/profilim") : history.push("/login")
 
 
     }

@@ -15,6 +15,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FcGoogle } from "react-icons/fc";
 
 
+
+
 function Register() {
     const loginSchema = z.object({
         name: z.string().min(3, { message: "Adınız en az 3 karakter olmalıdır" }),
@@ -33,6 +35,7 @@ function Register() {
 
 
     const [isLoading, setIsLoading] = useState(false);
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             name: "",
@@ -48,19 +51,24 @@ function Register() {
     const [showPass, setShowPass] = useState(false);
 
     const onSubmit = async (data) => {
-        setIsLoading(true)
+        setIsLoading(true);
+
+
 
         await axios.post("https://reqres.in/api/workintech", data)
             .then(res => {
                 console.log(res.data);
+
                 toast.success("Başarıyla üye oldunuz");
                 toast.success("Anasayfaya yönlendiriliyorsunuz");
                 history.push("/");
+
             }).catch(err => {
                 console.log(err);
                 toast.error("Üye olunamadı :(");
             })
-        setIsLoading(false)
+        setIsLoading(false);
+
 
 
     }
@@ -117,7 +125,7 @@ function Register() {
                             </div>
                         </div>
                         <CardFooter className="flex flex-col justify-between w-full gap-4 px-0 pt-6">
-                            <Button className='w-full' type='submit'>
+                            <Button className='w-full' type='submit' >
                                 {isLoading ? (<><Loader2 className="animate-spin" /> Üye Olunuyor...</>) : "Üye Ol"}
                             </Button>
                             <div className='flex gap-2 items-center justify-center w-full'>

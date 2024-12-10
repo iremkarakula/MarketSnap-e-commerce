@@ -13,10 +13,11 @@ import Login from "./pages/Login"
 import MainPage from "./pages/mainPage"
 import Post from "./pages/Post"
 import Profile from "./pages/Profile"
+import ProfilePage from "./pages/ProfilePage"
 import Register from "./pages/Register"
 import SnapCard from "./pages/SnapCard"
 import { Switch, Route } from "react-router-dom"
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -40,8 +41,9 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/profile">
-          <Profile />
+
+        <Route path="/profile/:item">
+          <ProfilePage />
         </Route>
         <Route path="/favorites">
           <Favorites />
