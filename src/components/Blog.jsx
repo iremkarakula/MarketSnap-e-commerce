@@ -13,10 +13,7 @@ function Blog() {
                     if (i < 3) {
                         return <BlogCard id={e.id} title={e.title} text={e.text} />
                     }
-
                 })}
-
-
             </div>
             <Link to="/blogs">
                 <Button variant="outline" className='cursor-pointer'>Tüm Trendleri Keşfet</Button>
