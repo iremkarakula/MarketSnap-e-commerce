@@ -74,7 +74,7 @@ function Register() {
     }
     return (
         <div className='py-8'>
-            <Card className="w-[350px] m-auto">
+            <Card className="w-full px-4 sm:w-[350px] m-auto">
                 <CardHeader className='flex flex-row justify-center items-center gap-4'>
                     <CardTitle className='text-gray-400'><Link to="/login">Giriş Yap</Link></CardTitle>
                     <Separator orientation="vertical" className='h-6' />
