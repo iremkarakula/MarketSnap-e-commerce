@@ -1,74 +1,42 @@
 const categories = [
     {
-        title: "indirim",
-        link: "",
-        subcategories: []
-    },
-    {
-        title: "erkek",
-        link: "",
-        subcategories: [
-            [
-                { title: "üst giyim", link: "", },
-                { title: "tişört", link: "", },
-                { title: "sweatshirt", link: "", },
-                { title: "gömlek", link: "", },
-            ],
-            [
-                { title: "alt giyim", link: "", },
-                { title: "pantolon", link: "", },
-                { title: "şort", link: "", },
-            ],
-            [
-                { title: "dış giyim", link: "", },
-                { title: "ceket", link: "", },
-                { title: "mont", link: "", },
-            ],
-            [
-                { title: "tüm ürünler", link: "", },
-            ],
-
-
+        "id": 1,
+        "name": "Erkek",
+        "subcategories": [
+            {
+                "name": "Üst giyim",
+                "subcategories": ["Tişört", "Sweatshirt", "Gömlek"]
+            },
+            {
+                "name": "Alt giyim",
+                "subcategories": ["Pantolon", "Şort"]
+            },
+            {
+                "name": "Dış giyim",
+                "subcategories": ["Ceket", "Mont"]
+            },
         ]
     },
     {
-        title: "kadın",
-        link: "",
-        subcategories: [
-            [
-                { title: "üst giyim", link: "", },
-                { title: "tişört", link: "", },
-                { title: "sweatshirt", link: "", },
-                { title: "kazak", link: "", },
-                { title: "elbise", link: "", },
-            ],
-            [
-                { title: "alt giyim", link: "", },
-                { title: "pantolon", link: "", },
-                { title: "etek", link: "", },
-                { title: "şort", link: "", },
-            ],
-            [
-                { title: "dış giyim", link: "", },
-                { title: "ceket", link: "", },
-                { title: "mont", link: "", },
-            ],
-            [
-                { title: "tüm ürünler", link: "", },
-            ],
+        "id": 2,
+        "name": "Kadın",
+        "subcategories": [
+            {
+                "name": "Üst giyim",
+                "subcategories": ["Tişört", "Sweatshirt", "Kazak", "Elbise"]
+            },
+            {
+                "name": "Alt giyim",
+                "subcategories": ["Pantolon", "Etek", "Şort"]
+            },
+            {
+                "name": "Dış giyim",
+                "subcategories": ["Ceket", "Mont"]
+            },
         ]
-    },
-    {
-        title: "hediye kartı",
-        link: "",
-        subcategories: []
-    },
-    {
-        title: "snap kart",
-        link: "",
-        subcategories: []
     }
-
 ]
+
+
 
 export default categories;

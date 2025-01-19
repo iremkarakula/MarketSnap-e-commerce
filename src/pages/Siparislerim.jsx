@@ -2,7 +2,9 @@ import React from 'react'
 
 function Siparislerim() {
     return (
-        <div>Siparislerim</div>
+        <div className="p-4">
+            <h2 className="text-xl mb-8">Siparişlerim</h2>
+        </div>
     )
 }
 

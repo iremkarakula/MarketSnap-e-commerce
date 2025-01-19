@@ -13,15 +13,15 @@ function GiftCard() {
 
 
     return (
-        <div className='flex flex-col md:flex-row gap-10 lg:gap-20 justify-center items-center py-10 px-4'>
+        <div className='flex flex-col md:flex-row gap-10  justify-center items-center py-10 px-4'>
             <h2 className='text-center text-3xl lg:text-4xl py-4 font-semibold  md:hidden'>Market Snap Hediye Kartı</h2>
-            <img src="src\assets\banner_1.jpeg" alt="" className='w-[330px] h-[350px] lg:w-[470px] lg:h-[370px] object-cover' />
+            <img src="src\assets\mainpage\gift.jpg" alt="" className='w-full sm:w-[330px] h-[350px] lg:w-[470px] lg:h-[370px] object-cover' />
             <div>
                 <h2 className='text-center text-3xl lg:text-4xl py-4 font-semibold hidden md:block'>Market Snap Hediye Kartı</h2>
 
                 <p>En özel anlara, en anlamlı hediye...</p>
                 <div>
-                    <form className='flex gap-6 py-4 px-4'>
+                    <form className='flex gap-6 py-4'>
                         {giftPrice.map((e, i) => {
                             return <div className='cursor-pointer' >
                                 <input

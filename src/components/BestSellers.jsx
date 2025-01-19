@@ -3,10 +3,10 @@ import MainPageProduct from './MainPageProduct'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import { products } from '@/products'
 
 
 function BestSellers() {
@@ -35,17 +35,11 @@ function BestSellers() {
                         }
                     }}
                 >
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
+                    {products.map((product, index) => {
+
+
+                        return <SwiperSlide key={product.id}> <MainPageProduct product={product} /></SwiperSlide>
+                    })}
 
                 </Swiper>
 

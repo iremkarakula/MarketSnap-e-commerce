@@ -3,20 +3,20 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
-import axios from 'axios'
-import { Loader2 } from 'lucide-react'
+
+import { CircleCheck, Loader2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff } from 'lucide-react';
 import { Checkbox } from "@/components/ui/checkbox"
 import { FcGoogle } from "react-icons/fc";
-import { useDispatch } from 'react-redux'
-import { login } from '@/redux/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getLogin } from '@/redux/loginSlice'
+import { toast } from 'react-toastify';
 
 
 function Login() {
@@ -29,44 +29,48 @@ function Login() {
             .regex(/[A-Z]/, { message: "Şifre en az bir büyük harf içermelidir!" })
             .regex(/[a-z]/, { message: "Şifre en az bir küçük harf içermelidir!" })
             .regex(/[0-9]/, { message: "Şifre en az bir rakam içermelidir!" }),
-        remember: z.boolean().optional()
+        isRemember: z.boolean().optional()
     })
 
 
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [remember, setRemember] = useState(false);
-    const { register, handleSubmit, formState: { errors }, control, watch } = useForm({
-        defaultValues: {
-            email: "",
-            password: "",
-            remember: false
-        },
-        resolver: zodResolver(loginSchema)
-    });
-    const history = useHistory();
-    const [showPass, setShowPass] = useState(false);
-    const dispatch = useDispatch();
 
+
+
+    const { register, handleSubmit, formState: { errors }, control } = useForm({ resolver: zodResolver(loginSchema) });
+
+    const [showPass, setShowPass] = useState(false);
+    const { isLoading } = useSelector(store => store.login);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const onSubmit = async (data) => {
-        setIsLoading(true)
+        const result = await dispatch(getLogin(data));
 
-        await axios.post("https://reqres.in/api/workintech", data)
 
-            .then(res => {
-                console.log(res.data);
-                console.log(remember)
+        if (getLogin.fulfilled.match(result)) {
+            toast(<div className='flex gap-2 items-center'>
 
-                toast.success("Başarıyla giriş yaptınız");
-                toast.success("Anasayfaya yönlendiriliyorsunuz");
-                history.push("/");
-            }).catch(err => {
-                console.log(err);
-                toast.error("Giriş yapılamadı :(");
-            })
+                <CircleCheck />
+                <p>Başarıyla giriş yapıldı</p>
+            </div>
+            );
+            toast(<div className='flex gap-2 items-center'>
 
+                <CircleCheck />
+                <p>Anasayfaya yönlendiriliyorsunuz</p>
+            </div>
+            );
+            history.push("/");
+        } else {
+            toast.error("Giriş yapılamadı")
+        }
     }
+
+
+
+
+
 
     return (
         <div className='py-8'>
@@ -103,15 +107,16 @@ function Login() {
                                 <div className="flex items-center space-x-2">
 
                                     <Controller
-                                        name="remember"
+                                        name="isRemember"
                                         control={control}
                                         render={({ field }) => (
                                             <Checkbox
-                                                id="remember"
+                                                id="isRemember"
                                                 checked={field.value}
                                                 onCheckedChange={(checked) => {
                                                     field.onChange(checked);
-                                                    setRemember(checked);
+
+
 
                                                 }}
                                             />
@@ -121,7 +126,7 @@ function Login() {
 
 
                                     <label
-                                        htmlFor="remember"
+                                        htmlFor="isRemember"
                                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                     >
                                         Beni Hatırla
@@ -134,7 +139,7 @@ function Login() {
 
                         </div>
                         <CardFooter className="flex flex-col justify-between w-full gap-4 px-0 pt-6">
-                            <Button className='w-full' type='submit' onClick={() => dispatch(login())}>
+                            <Button className='w-full' type='submit' >
                                 {isLoading ? (<><Loader2 className="animate-spin" /> Giriş Yapılıyor...</>) : "Giriş Yap"}
                             </Button>
                             <div className='flex gap-2 items-center justify-center w-full'>

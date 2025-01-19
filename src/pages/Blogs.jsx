@@ -11,9 +11,9 @@ function Blogs() {
                 {
                     posts.map((e) => {
                         const shortText = e.text.substring(0, 350);
-                        return <div className='flex gap-12 justify-center py-12'>
-                            <img src='src\assets\banner_1.jpeg' className='w-72 object-cover rounded' />
-                            <div className='w-1/3 p-4'>
+                        return <div className='flex flex-col md:flex-row gap-12 justify-center items-stretch py-12 px-6 lg:px-12'>
+                            <img src={e.img} className='w-full md:w-72 aspect-[1] object-cover rounded' />
+                            <div className='w-full p-4'>
                                 <h3 className='text-xl font-semibold'>{e.title}</h3>
                                 <p className='py-4'>{shortText}...</p>
                                 <Link to={`/post/${e.id}`}>

@@ -98,3 +98,10 @@ Link,
 button {
   cursor: pointer;
 }
+
+.custom-scroll {
+  overflow: auto;
+  scrollbar-width: thin;
+
+
+}

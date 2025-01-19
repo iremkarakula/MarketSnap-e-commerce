@@ -6,13 +6,20 @@ import posts from "../../posts"
 
 function Blog() {
     return (
-        <div className="flex flex-col items-center" >
+        <div className="flex flex-col items-center px-4" >
             <h2 h2 className=' text-3xl text-center pt-20 font-semibold px-4' > TRENDLERE YÖN VERİN</h2>
-            <div className='flex flex-wrap items-center justify-center gap-6 py-10'>
-                {posts.map((e, i) => {
-                    if (i < 3) {
-                        return <BlogCard id={e.id} title={e.title} text={e.text} />
-                    }
+            <div className='hidden lg:flex items-center justify-center gap-6 py-10 '>
+                {posts.slice(0, 3).map((e, i) => {
+
+                    return <BlogCard id={e.id} title={e.title} text={e.text} img={e.img} />
+
+                })}
+            </div>
+            <div className='flex flex-col md:flex-row lg:hidden items-center justify-center gap-6 py-10 '>
+                {posts.slice(0, 2).map((e, i) => {
+
+                    return <BlogCard id={e.id} title={e.title} text={e.text} img={e.img} />
+
                 })}
             </div>
             <Link to="/blogs">

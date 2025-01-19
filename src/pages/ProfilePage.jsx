@@ -4,6 +4,8 @@ import Siparislerim from './Siparislerim'
 import MyAccount from './MyAccount'
 import Adreslerim from './Adreslerim'
 import { Route, Switch } from 'react-router-dom'
+import SnapCardProfile from './SnapCardProfile'
+import GiftCardProfile from './GiftCardProfile'
 
 
 
@@ -22,6 +24,12 @@ function ProfilePage() {
                 </Route>
                 <Route path="/profile/adreslerim">
                     <Adreslerim />
+                </Route>
+                <Route path="/profile/snapkartım">
+                    <SnapCardProfile />
+                </Route>
+                <Route path="/profile/hediyekartlarım">
+                    <GiftCardProfile />
                 </Route>
             </Switch>
 

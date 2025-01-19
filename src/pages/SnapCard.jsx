@@ -6,7 +6,7 @@ import { FaGooglePlay } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 
 function SnapCard() {
-    const { isAuthenticated } = useSelector(store => store.user);
+    const { isAuthenticated } = useSelector(store => store.login);
     const path = isAuthenticated ? "/profile/snapkartım" : "/register";
 
     return (

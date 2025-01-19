@@ -7,8 +7,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import MainPageProduct from './MainPageProduct';
+import { products } from '@/products'
 
 function NewArrivals() {
+
     return (
         <div className='w-full m-auto'>
             <h2 className='text-center text-4xl pt-20 font-semibold'>YENİ GELENLER</h2>
@@ -33,18 +35,11 @@ function NewArrivals() {
                             spaceBetween: 20,
                         }
                     }}
-                >
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
-                    <SwiperSlide> <MainPageProduct /></SwiperSlide>
+                > {products.map((product, index) => {
+
+
+                    return <SwiperSlide key={product.id} > <MainPageProduct product={product} /></SwiperSlide>
+                })}
 
                 </Swiper>
 

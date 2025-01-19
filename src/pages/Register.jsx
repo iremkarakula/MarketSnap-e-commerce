@@ -13,6 +13,8 @@ import { toast } from 'react-toastify'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FcGoogle } from "react-icons/fc";
+import { useDispatch, useSelector } from 'react-redux'
+import { getRegister } from '@/redux/registerSlice'
 
 
 
@@ -34,44 +36,25 @@ function Register() {
 
 
 
-    const [isLoading, setIsLoading] = useState(false);
+    const dispatch = useDispatch();
+    const { isLoading } = useSelector(store => store.register);
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        defaultValues: {
-            name: "",
-            surname: "",
-            phone: "",
-            email: "",
-            password: "",
-            confirmpassword: ""
-        },
-        resolver: zodResolver(loginSchema)
-    });
+    const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(loginSchema) });
     const history = useHistory();
     const [showPass, setShowPass] = useState(false);
 
     const onSubmit = async (data) => {
-        setIsLoading(true);
-
-
-
-        await axios.post("https://reqres.in/api/workintech", data)
-            .then(res => {
-                console.log(res.data);
-
-                toast.success("Başarıyla üye oldunuz");
-                toast.success("Anasayfaya yönlendiriliyorsunuz");
-                history.push("/");
-
-            }).catch(err => {
-                console.log(err);
-                toast.error("Üye olunamadı :(");
-            })
-        setIsLoading(false);
-
-
-
+        const result = await dispatch(getRegister(data));
+        if (getRegister.fulfilled.match(result)) {
+            toast.success("Başarıyla üye oldunuz");
+            toast.success("Anasayfaya yönlendiriliyorsunuz");
+            history.push("/");
+        } else {
+            toast.error("Üye olunamadı :(");
+        }
     }
+
+
     return (
         <div className='py-8'>
             <Card className="w-full px-4 sm:w-[350px] m-auto">
@@ -142,6 +125,11 @@ function Register() {
             </Card>
         </div>
     )
+
+
 }
+
+
+
 
 export default Register

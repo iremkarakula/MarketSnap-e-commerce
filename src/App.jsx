@@ -1,4 +1,5 @@
 
+import { Toaster } from "./components/ui/toaster"
 import Footer from "./layouts/Footer"
 import Header from "./layouts/header"
 
@@ -12,6 +13,8 @@ import Login from "./pages/Login"
 
 import MainPage from "./pages/mainPage"
 import Post from "./pages/Post"
+import ProductDetails from "./pages/ProductDetails"
+import ProductListingPage from "./pages/ProductListingPage"
 import Profile from "./pages/Profile"
 import ProfilePage from "./pages/ProfilePage"
 import Register from "./pages/Register"
@@ -19,6 +22,7 @@ import SnapCard from "./pages/SnapCard"
 import { Switch, Route } from "react-router-dom"
 import { ToastContainer, } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -29,7 +33,7 @@ function App() {
       <Header />
 
       <Switch>
-        <Route path="/hediyekartı">
+        <Route path="/hediyekarti">
           <GiftCard />
         </Route>
         <Route path="/snapkart">
@@ -48,6 +52,7 @@ function App() {
         <Route path="/favorites">
           <Favorites />
         </Route>
+
         <Route path="/sepet">
           <Cart />
         </Route>
@@ -60,9 +65,16 @@ function App() {
         <Route path="/post/:id">
           <Post />
         </Route>
-        <Route path="/:gender/:subcategory">
-          <CategoryPage />
+        <Route path="/:gender/:category/:subcategory/:id">
+          <ProductDetails />
         </Route>
+        <Route path="/:gender/:category/:subcategory">
+          <ProductListingPage />
+        </Route>
+        <Route path="/:gender/:category">
+          <ProductListingPage />
+        </Route>
+
 
         <Route path="/">
           <MainPage />
@@ -73,6 +85,7 @@ function App() {
       <Footer />
 
       <ToastContainer />
+      <Toaster />
     </div>
   )
 }
