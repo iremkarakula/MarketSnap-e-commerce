@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import BreadCrumb from '@/components/BreadCrumb';
+import { useState } from 'react';
 
 
 const sizeSchema = z.object({
@@ -25,6 +26,7 @@ function ProductDetails() {
     const dispatch = useDispatch();
     const { gender, id } = useParams();
     const { register, formState: { errors }, handleSubmit } = useForm({ resolver: zodResolver(sizeSchema) });
+    const [imgIndex, setImgIndex] = useState(0);
 
 
     const product = products.find((p) => {
@@ -40,6 +42,10 @@ function ProductDetails() {
         dispatch(addToCart({ ...product, size: data.size, quantity: 1 }));
     };
 
+    const handleImg = (index) => {
+        setImgIndex(index);
+    }
+
 
 
 
@@ -52,11 +58,15 @@ function ProductDetails() {
                 <div className='hidden lg:flex gap-4 '>
                     <div className='gap-3 h-[520px] flex flex-col'>
                         {product.imgList.map((img, i) => {
-                            return <img src={img} alt="" className='w-20 h-1/4  object-cover' />
+                            return <img
+                                key={i}
+                                src={img}
+                                className={`w-20 h-1/4  object-cover cursor-pointer  ${imgIndex === i ? "border border-gray-700" : ""}`}
+                                onClick={() => handleImg(i)} />
                         })}
                     </div>
                     <div className='h-[520px]'>
-                        <img src={product.img} alt="" className='w-[400px] h-full  object-cover' />
+                        <img src={product.imgList[imgIndex]} alt="" className='w-[400px] h-full  object-cover' />
                     </div>
                 </div>
                 <div className='lg:hidden sm:w-1/2 '>
