@@ -19,15 +19,51 @@ function BreadCrumb() {
     const foundItem = products.find(e => e.id === Number(id));
     const list = [];
 
-
-
-
-
     if (gender) list.push(gender);
-    if (category) list.push(category);
-    if (subcategory) list.push(subcategory);
-    if (foundItem) list.push(foundItem.title);
 
+    const categoryMap = {
+        "ust-giyim": "üst giyim",
+        "alt-giyim": "alt giyim",
+        "dıs-giyim": "dış giyim"
+    };
+
+
+
+    const subCategoryMap = {
+        "tisort": "tişört",
+        "sort": "şort",
+        "gomlek": "gömlek"
+    }
+
+    if (category && categoryMap[category]) {
+        list.push(categoryMap[category]);
+    }
+
+    if (subcategory && subCategoryMap[subcategory]) {
+        list.push(subCategoryMap[subcategory])
+    } else {
+        list.push(subcategory)
+    }
+
+    if (id) {
+        list.push(foundItem.title)
+    }
+
+    const breadcrumbItems = list.slice(0, list.length - 1);
+    const lastItem = list[list.length - 1];
+
+    const generatePath = (index) => {
+        switch (index) {
+            case 0:
+                return `/${gender}`;
+            case 1:
+                return `/${gender}/${category}`;
+            case 2:
+                return `/${gender}/${category}/${subcategory}`;
+            default:
+                return "";
+        }
+    }
 
 
 
@@ -38,19 +74,32 @@ function BreadCrumb() {
                     <BreadcrumbItem >
                         <BreadcrumbLink href="/">Anasayfa</BreadcrumbLink>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    {list.slice(0, list.length - 1).map((e, i) => {
-                        let path = "/" + list.slice(0, i + 1).join("/");
+
+                    {breadcrumbItems.map((e, i) => {
+                        const path = generatePath(i);
+
                         return < >
+
+                            <BreadcrumbSeparator />
+
                             <BreadcrumbItem>
                                 <BreadcrumbLink href={path}>{e}</BreadcrumbLink>
                             </BreadcrumbItem>
-                            <BreadcrumbSeparator />
+
+
+
                         </>
                     })}
-                    <BreadcrumbItem>
-                        <BreadcrumbPage>{list[list.length - 1]}</BreadcrumbPage>
-                    </BreadcrumbItem>
+
+
+                    {lastItem && (<> <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbPage>{lastItem}</BreadcrumbPage>
+                        </BreadcrumbItem></>
+
+
+
+                    )}
                 </BreadcrumbList>
             </Breadcrumb>
         </div>
