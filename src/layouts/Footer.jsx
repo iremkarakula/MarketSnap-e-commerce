@@ -12,6 +12,8 @@ import { Link } from "react-router-dom"
 import categories from '../../category'
 
 import FooterAccordion from '@/components/FooterAccordion'
+import android from "../../src/assets/android.png"
+import apple from "../../src/assets/apple.png"
 
 function Footer() {
 
@@ -53,8 +55,8 @@ function Footer() {
                 <div className=''>
                     <h4 className='text-base font-semibold pb-2' >APP'İ İNDİR</h4>
                     <div className='flex'>
-                        <Link><img src="src\assets\pngwing.com (4).png" className='w-32 h-14 object-cover ' /></Link>
-                        <Link><img src="src\assets\pngwing.com (4).png" className='w-32 h-14 object-cover' /></Link>
+                        <Link><img src={android} className='w-36 h-14 object-cover' /></Link>
+                        <Link><img src={apple} className='w-32 h-14 object-contain' /></Link>
                     </div>
                     <div className='flex gap-2 w-56 py-4'>
                         <Link><Instagram /></Link>
